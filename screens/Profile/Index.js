@@ -106,7 +106,6 @@ export default class Profile extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                {this.renderName()}
                 {this.renderImage()}
                 {this.renderPowerStats()}
             </View>
