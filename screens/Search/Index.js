@@ -74,6 +74,7 @@ export default class Search extends React.Component {
                                 onPress={
                                     () => this.props.navigation.push('Profile', {
                                         id: item.id,
+                                        name: item.name
                                     })
                                 }
                             >

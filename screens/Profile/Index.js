@@ -12,9 +12,13 @@ export default class Profile extends React.Component {
         powerstats:{}
     };
 
-    static navigationOptions = {
-        title : "Profile"
+    static navigationOptions = ({navigation}) => {
+        const { state : { params: { name } } } = navigation;
+        return {
+            title:name
+        };
     }
+    
     componentDidMount(){
         const id = this.props.navigation.getParam('id');
         fetch(`https://www.superheroapi.com/api.php/10216378608089852/${id}`)
@@ -109,58 +113,3 @@ export default class Profile extends React.Component {
         );
     }
 }
-
-/*
-import React from 'react';
-import { View, Text, Image } from 'react-natimport { ListItem } from 'native-base';
-ive';
-import { List, ListItem } from 'native-base';
-
-
-export default class Profile extends React.Component {
-    state = {
-        name:'',
-        url:'',
-        powerstats:{}
-    };
-
-    static navigationOptions = {
-        title : "Profile"
-    }
-    componentDidMount(){
-        const id = this.props.navigation.getParam('id');
-        fetch(`https://www.superheroapi.com/api.php/10216378608089852/${id}`)
-        .then( (res)=>res.json() )
-        .then( (data) => {
-            return this.setState({name:data.name, url:data.image.url, powerstats:data.powerstats});
-        } );
-    }
-    
-    renderImage(){
-        if(this.state.url){
-            return(<Image 
-                source={{uri: this.state.url}}
-                style={{width: 300, height: 300,justifyContent: 'center',
-                alignItems: 'center',}}
-            />)
-        }
-    }
-
-    renderName(){
-        if(this.state.name){
-            return( <Text>{this.state.name}</Text>)
-        }
-    }
-
-    
-
-    render() {
-        return (
-            <View>
-                {this.renderName()}
-                {this.renderImage()}
-                {this.renderPowerStats()}
-            </View>
-        );
-    }
-}*/
